@@ -1,0 +1,254 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	font-family: "Segoe UI Symbol", sans-serif;	
+	color: inherit;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	--accent-color: salmon;
+	--accent-color-muted: hsla(6, 93%, 71%, 0.4);
+	--complementary-color: grey;
+	--complementary-color: rgb(30, 30, 30);
+	--card-color: rgb(50, 50, 50);
+	color: var(--accent-color);
+	display: flex;
+	flex-direction: column;
+}
+
+header, footer {
+	text-align: center;
+	background-color: var(--accent-color);
+	color: var(--complementary-color);
+	padding: 10px;
+	font-weight: bold;
+}
+
+header h1 {
+	margin-top: 10px;
+}
+
+button {
+	font-weight: bolder;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.logo {
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+}
+
+main {
+	flex-grow: 1;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-auto-rows: 50vh;
+	gap: 20px; 
+	padding: 20px;
+	background-color: var(--complementary-color);
+}
+
+.task-list-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.task-list-title {
+	margin: 0;
+	padding: 5px 15px;
+	width: 100%;
+	background-color: var(--accent-color);
+	color: var(--complementary-color);
+	border-radius: 30px 30px 0 0;
+	font-size: 1.2rem;
+}
+
+.menu {
+	border: solid var(--accent-color);
+	border-width: 0 8px 0 8px;
+	display: flex;
+}
+
+.filter-button {
+	flex-grow: 1;
+	font-size: 0.8rem;
+	padding: 5px 0;
+	transition: color 300ms ease-in-out;
+}
+
+.filter-button.active {
+	background-color: var(--card-color);
+}
+
+.filter-button:hover {
+	color: var(--accent-color-muted);
+}
+
+.filter-button:not(:last-child) {
+	border-right: 2px solid var(--card-color);
+}
+
+.task-list {
+	border: solid var(--accent-color);
+	border-width: 0 8px 0 8px;
+	flex-grow: 1;
+	overflow: auto;
+	margin: 0;
+	padding: 0 5px;
+	background-color: var(--card-color);
+}
+
+.task-list.dragged-over {
+	border-style: dotted;
+}
+
+.task {
+	background-color: var(--complementary-color);
+	list-style-type: none;
+	display: flex;
+	align-items: center;
+	margin: 5px 0;
+	padding: 5px;
+	border-radius: 5px;
+	position: relative;
+}
+
+.task-list.all .task {
+	display: flex;
+}
+
+.task-list.pending .task.done {
+	display: none;
+}
+
+.task-list.done .task:not(.done) {
+	display: none;
+}
+
+.task input {
+	opacity: 0;
+	position: relative;
+	z-index: 5;
+	cursor: pointer;
+}
+
+.task label {
+	position: relative;
+	cursor: pointer;
+}
+
+.task label::before {
+	content: '\002714';
+	line-height: 1rem;
+	color: var(--card-color);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: -1.15rem;
+	height: 1rem;
+	width: 1rem;
+	background-color: var(--card-color);
+	border-radius: 2.5px;
+	cursor: pointer;
+	transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+[type="checkbox"]:checked + label {
+	text-decoration: line-through;
+	color: var(--accent-color-muted);
+}
+
+.task input:checked + label::before {
+	background-color: var(--accent-color);
+	color: var(--card-color);
+	opacity: 1;
+}
+
+.task label:hover::before, .task input:hover + label::before {
+	color: var(--accent-color);
+}
+
+.task button {
+	padding: 1px;
+}
+
+.task > *:not(:last-child) {
+	margin-right: 5px;
+}
+
+.task button {
+	transition: color 300ms ease-in-out;
+}
+
+.task button:hover {
+	color: var(--accent-color-muted);
+}
+
+.edit-task-button {
+	margin-left: auto;
+	transform: rotateY(-180deg);
+}
+
+[data-editing] ~ .edit-task-button {
+	color: var(--accent-color-muted);
+}
+
+.push-to-top-button {
+	transform: rotate(-90deg);
+}
+
+.enter-task-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	background-color: var(--accent-color);
+	border-radius: 0 0 5px 5px;
+}
+
+.task-input {
+	color: var(--complementary-color);
+	border-radius: 5px;
+	max-width: 200px;
+}
+
+.submit-task-button {
+	color: var(--card-color);
+	border-radius: 5px;
+	border: 2px solid currentcolor;
+	margin-left: 0.5rem;
+	transition: color 300ms ease-in-out;
+}
+
+.submit-task-button:hover {
+	color: var(--complementary-color);
+}
+
+.clear-button {
+	font-size: 1.2rem;
+	color: var(--card-color);
+	border: 2px solid currentcolor;
+	border-radius: 100px;
+	transition: color 300ms ease-in-out;
+}
+
+.clear-button:hover {
+	color: var(--complementary-color);
+}
+
+.count {
+	display: inline-block;
+	height: 1rem;
+	width: 1rem;
+	border-radius: 0.5rem;
+	margin-left: 10px;
+	background-color: var(--accent-color);
+	color: var(--complementary-color);
+}

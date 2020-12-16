@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="script.js" defer ></script>
+	<title>Devs' To-Learn List</title>
+</head>
+<body>
+	<header>
+		<h1>Devs' To-Learn List</h1>
+		<p>Keep track of everything you need to learn to stay up to date with the lastest dev tools and technologies</p>
+	</header>
+	<main>
+
+	</main>
+	<footer>
+		<button class="clear-button">Clear Tasks & Reset</button>		
+	</footer>
+	<template data-template="task">
+		<li class="task" id="" draggable="true">
+			<input type="checkbox" id="">
+			<label for=""></label>
+			<button class="edit-task-button" title="edit task">✎</button>			
+			<button class="delete-task-button" title="delete task">✖</button>
+			<button class="push-to-top-button" title="push task to top of list">➤</button>
+		</li>
+	</template>
+	<template data-template="task-list-section">
+		<section class="task-list-section">
+			<h2 class="task-list-title"></h2>
+			<div class="menu">
+				<button class="filter-button active" data-show="all">All </button>
+				<button class="filter-button" data-show="pending">Pending </button>
+				<button class="filter-button" data-show="done">Done</button>
+			</div>
+			<ul class="task-list all">
+				
+			</ul>
+			<section class="enter-task-area">
+				<input type="text" class="task-input" placeholder="Enter a task" maxlength="100">
+				<button class="submit-task-button">➕</button>			
+			</section>
+		</section>
+	</template>
+</body>
+</html>
