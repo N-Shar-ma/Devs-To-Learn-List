@@ -5,32 +5,6 @@ let taskListTitles = ["To Casually Google", "To Learn Basics", "To Learn In Dept
 const clearButton = document.querySelector(".clear-button");
 let submitTaskButtons, inputBoxes, taskLists;
 
-// WDS Easter Egg
-
-checkIfWDS();
-
-function checkIfWDS()
-{
-	if(JSON.parse(localStorage.getItem("WDS")))
-	{
-		taskListTitles = ["To Consider Ideas", "To Prepare For", "To Record", "To Edit", "To Upload"];
-		const brandBlue = "#00AAFF";
-		const logo = document.createElement("img");
-		logo.src = "https://avatars0.githubusercontent.com/u/39717099?s=400&u=e192713e24ccb5cfa7ab7dec5ab0694db66ef293&v=4";
-		logo.alt = "WDS logo";
-		logo.classList.add("logo");
-		document.querySelector("header").insertBefore(logo, document.querySelector("header h1"));
-		document.querySelector("header h1").innerText = "WDS' To Do List";
-		document.querySelector("header p").innerText = "Keep track of all your amazing videos from ideation to upload";
-		document.querySelector("body").style.setProperty("--accent-color", brandBlue);
-		document.querySelector("body").style.setProperty("--accent-color-muted", "hsla(200, 100%, 50%, 0.4)");
-	}
-	else
-		localStorage.setItem("WDS", "false");
-}
-
-// End of Easter Egg check
-
 let idCount = JSON.parse(localStorage.getItem("idCount")) || 0;
 
 let taskObjects = JSON.parse(localStorage.getItem("taskObjects")) || [];
@@ -167,12 +141,6 @@ function submitTask(enterTextArea)
 
 function handleTaskInputted(inputBox)
 {
-	if(inputBox.value.trim()==="Kyle from WDS") // WDS check
-	{
-		localStorage.setItem("WDS", "true");
-		location.reload();
-		return;
-	}
 	if(inputBox.parentElement.parentElement.querySelector("[data-editing]"))
 		editTask(inputBox.parentElement.parentElement.querySelector("[data-editing]"), inputBox);
 	else
